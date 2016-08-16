@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rubyzip (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rubyzip (>= 1.0.0)
+
+RUBY VERSION
+   ruby 2.2.4p230
+
+BUNDLED WITH
+   1.12.5
