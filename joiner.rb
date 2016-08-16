@@ -31,9 +31,7 @@ module Joiner
   end
 
   if __FILE__ == $0
-
     write_all
-
   end
 end
 

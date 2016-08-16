@@ -3,25 +3,34 @@
 
 require './downloader.rb'
 require 'zip'
+require 'fileutils'
 
 module Unziper
 
 
-  def self.unzip(file) 
+  def self.unzip(file, force) 
     Zip::File.open(file) do |zipfile|
       zipfile.each do |entry|
-        # The 'next if...' code can go here, though I didn't use it
+        name = "#{Downloader::TEMP_FOLDER}/#{entry.name}"
+        if File.exist?(name)
+          if force
+            FileUtils::rm(name)
+          else
+            puts "The file #{name} already exists, skiping"
+            next
+          end
+        end
         unless File.exist?(entry.name)
           FileUtils::mkdir_p(File.dirname(entry.name))
-          zipfile.extract(entry, "#{Downloader::TEMP_FOLDER}/#{entry.name}") 
+          zipfile.extract(entry, name) 
         end
       end
     end
   end
 
-  def self.extract_all()
+  def self.extract_all(force=false)
     Dir["#{Downloader::TEMP_FOLDER}/*.zip"].each do |file|
-      self.unzip(file)
+      self.unzip(file, force)
     end
   end
 

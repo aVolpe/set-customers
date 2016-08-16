@@ -30,12 +30,12 @@ module Downloader
     end
   end
 
-  def self.download()
+  def self.download(force)
 
     self.create_temp_folder
     SETUrls::DATA.each_with_index do |url, index| 
       name = "ruc#{index}.zip";
-      if not File.exist?(self.get_file_path(name)) 
+      if force or not File.exist?(self.get_file_path(name)) 
         puts "Downloading index #{index} (#{url})"
         self.save_to_tempfile(url, name)
       else 
