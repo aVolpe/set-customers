@@ -5,7 +5,7 @@ module SETUrls
   # The URL's to download the customer data.
   DATA = [];
   # this is the current version
-  VERSION = 14;
+  VERSION = 38;
 
 
   (0..9).each do |termination|
