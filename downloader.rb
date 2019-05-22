@@ -46,7 +46,7 @@ module Downloader
   end
 
   if __FILE__ == $0
-    self.download
+    self.download(true)
   end
 
 end
